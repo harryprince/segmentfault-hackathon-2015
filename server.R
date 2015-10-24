@@ -42,7 +42,7 @@ shinyServer(
     # is_input_file<-reactive({is.null(input$file)})
     
     output$logo<-renderUI({
-      img(src="http://7xnf88.com1.z0.glb.clouddn.com/genefan_logo.png",width = "100px", height = "20px")
+      img(src="http://7xnf88.com1.z0.glb.clouddn.com/genefan_logo.png",width = "432px", height = "216px")
     })
     #显示图片
     output$image_status<-renderText({

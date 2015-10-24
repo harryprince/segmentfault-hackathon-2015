@@ -12,15 +12,15 @@ shinyUI(fluidPage(
   # Application title
   # Sidebar with a slider input for number of bins
       sidebarPanel(
-               fileInput(inputId = "file",label = "选取美食图片:", multiple = 1, accept = c(
+               fileInput(inputId = "file",label = "开始匹配:", multiple = 1, accept = c(
                                                       'image/jpeg',
                                                       'image/jpg',
                                                       'image/png',
-                                                      'image/gif')
+                                                      'image/gif'))
                                                       #,
                                                       #datapath='temp')
-                        ),
-               fileInput("files", "File data", multiple=TRUE)
+                        # ),
+               # fileInput("files", "File data", multiple=TRUE)
                   ),
            
     # actionButton("match","开始匹配")
