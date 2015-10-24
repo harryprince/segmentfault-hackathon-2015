@@ -29,8 +29,8 @@ shinyUI(fluidPage(
   # Show a plot of the generated distribution
     mainPanel(
       uiOutput('logo'),
-      tableOutput("filetable"),
       h2(textOutput("image_status")),
+      textOutput("food_name"),
       plotOutput('user_upload'),
       h1(textOutput("index"),align='center'),
       plotOutput("circle"),
