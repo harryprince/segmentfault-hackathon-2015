@@ -31,7 +31,7 @@ shinyUI(fluidPage(
       uiOutput('logo'),
       h2(textOutput("image_status")),
       textOutput("food_name"),
-      plotOutput('user_upload'),
+      uiOutput('user_upload'),
       h1(textOutput("index"),align='center'),
       plotOutput("circle"),
       

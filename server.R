@@ -54,9 +54,9 @@ shinyServer(
     output$user_upload<-renderUI({
       if ({is.null(input$file)})
         return(NULL)
-      # text(food_recognition(input$file["name"]))
-      img(src = "/var/folders/f2/9jwh0h8s4y70r1jl3s7cq_5c0000gn/T//RtmpORQ7J9/91ecf1ba151796fabbd9b6ad/0")
-
+      img_id=input$file["name"]
+      curl_url=paste("http://7xnf88.com1.z0.glb.clouddn.com/",img_id,sep="")
+      img(src = curl_url,width='200px')
     })
     output$food_name <- renderText(function() {
       if (is.null(input$file)) {
