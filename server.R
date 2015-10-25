@@ -51,13 +51,20 @@ shinyServer(
       c('你的美食')
     })
     #显示图片
-    output$user_upload<-renderUI({
+    output$user_upload <- renderUI({
       if ({is.null(input$file)})
         return(NULL)
-      img_id=input$file["name"]
-      curl_url=paste("http://7xnf88.com1.z0.glb.clouddn.com/",img_id,sep="")
+      img_id = input$file["name"]
+      curl_url = paste("http://7xnf88.com1.z0.glb.clouddn.com/",img_id,sep="")
       img(src = curl_url,width='200px')
+      
+
     })
+    
+    
+    # read.csv(inFile$datapath, header=input$header, sep=input$sep, quote=input$quote)
+    
+    # image
     output$food_name <- renderText(function() {
       if (is.null(input$file)) {
         # User has not uploaded a file yet
@@ -67,7 +74,7 @@ shinyServer(
         food_recognition(input$file["name"])
       },
       error = function(err){
-        return ("未知食物")
+        return("未知食物")
       })
       
     })
@@ -91,6 +98,8 @@ shinyServer(
       if ({is.null(input$file)})
         return(NULL)
       c('你的基因美食匹配度')
+      
+      
     })
     # 得分
     output$circle<- renderPlot({
@@ -116,7 +125,8 @@ shinyServer(
     output$description<-renderText({
       if (is.null(input$file))
         return(NULL)
-      c('建议：')
+      c('建议')
+
     })
     
     output$history<- renderPlot({
@@ -129,8 +139,16 @@ shinyServer(
       p=ggplot(sunspotyear1, aes(x=x, y=y)) + geom_point(col='blue',alpha=.2,size=5)+geom_point(col='blue',alpha=.2)+geom_area(fill="red",alpha=.2) + geom_line()+scale_x_discrete(breaks=sunspotyear1$x,labels=history$timestamp) + xlab("Date")
       
       p+ylab("Healty Score")+theme(axis.title.y=element_text(angle=0))
-      # }
+
       
+            # }
+      # jpegfile <- file(input$file["datapath"], "rb")
+      # N <- 1e6
+      # repeat{
+      #   pngfilecontents <- readBin(jpegfile, what="raw", n=N)
+      #   if(length(pngfilecontents) == N) N <- 5 * N else break
+      # }
+      # close(jpegfile)
     })
   }
 )
