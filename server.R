@@ -138,7 +138,7 @@ shinyServer(
       
       p=ggplot(sunspotyear1, aes(x=x, y=y)) + geom_point(col='blue',alpha=.2,size=5)+geom_point(col='blue',alpha=.2)+geom_area(fill="red",alpha=.2) + geom_line()+scale_x_discrete(breaks=sunspotyear1$x,labels=history$timestamp) + xlab("Date")
       
-      p+ylab("Healty Score")+theme(axis.title.y=element_text(angle=0))
+      p+ylab("")+theme(axis.title.y=element_text(angle=0))
 
       
             # }
