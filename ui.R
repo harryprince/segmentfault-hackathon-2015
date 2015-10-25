@@ -30,21 +30,21 @@ shinyUI(fluidPage(
     mainPanel(
       uiOutput('logo'),
       h2(textOutput("image_status")),
-      textOutput("food_name"),
       uiOutput('user_upload'),
+      h3(textOutput("food_name")),
       h1(textOutput("index"),align='center'),
       plotOutput("circle"),
-      
-      tabPanel("Live Images", 
-               conditionalPanel(condition = "input.image_type == 'img_type1'",
-                                img(src = "img_type1.jpeg")
-               ),
-               conditionalPanel(condition = "input.image_type == 'img_type2'",
-                                img(src = "img_type2.jpeg")
-               )
-      ),
-      
+      # tabPanel("Live Images", 
+      #          conditionalPanel(condition = "input.image_type == 'img_type1'",
+      #                           img(src = "img_type1.jpeg")
+      #          ),
+      #          conditionalPanel(condition = "input.image_type == 'img_type2'",
+      #                           img(src = "img_type2.jpeg")
+      #          )
+      # ),
+      # 
       h2(textOutput("description")),
+      h2("    ",margin=c(2,0,0,0)),
       h5("该食物为纯牛奶，其钙磷比例非常适当，利于钙的吸收。MCM6基因产生突变，导致乳糖代谢能力差，易出现腹泻、腹胀或腹绞痛等症状。需降低牛奶的饮用量，或者喝低乳糖牛奶或者酸奶."),
       h2("基因检测结果",align='center'),
       h3("MCM6 基因",align='center',col="red"),

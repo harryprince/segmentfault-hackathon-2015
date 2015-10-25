@@ -48,7 +48,7 @@ shinyServer(
     output$image_status<-renderText({
       if ({is.null(input$file)})
         return(NULL)
-      c('你的美食')
+      c('你的美食：')
     })
     #显示图片
     output$user_upload <- renderUI({
@@ -79,20 +79,7 @@ shinyServer(
       
     })
     
-        # 
-        # c<-reactive({
-        #   if (is_input_file()){
-        #     return(NULL)
-        #     }
-        #   plot(input$file)
-        #   if (is_input_file()){
-        #     return(NULL)
-        #   }else{dev.off()
-        #       }
-        # })
-        # observe({c()})
-    # observe(plot(readJPEG((input$file)["datapath"], native = TRUE)))
-   # observe(save.image()) 
+
     #显示标题
     output$index<-renderText({
       if ({is.null(input$file)})
@@ -110,16 +97,17 @@ shinyServer(
         return(NULL)
       
       library(plotrix)
+      if  (food_recognition(input$file["name"])=="纯牛奶"){a=80;color='gray'}
+      else{
+        if (food_recognition(input$file["name"])=="菠菜"){a=70;color='green'}
+        else{a=40;color='blue'}
+      }
+      
       par(family='STKaiti',mar=c(0,0,0,0))
       plot(1:10,seq(1,10,length=10),type="n",axes=F,xlab="",ylab="",frame.plot=F)#,main='本餐基因饮食匹配度')
-      draw.circle(5,5,c(2,2,2),border="purple", col=c("#ff00ff","#ff77ff","#ffccff"),lty=1,lwd=1)
+      draw.circle(5,5,c(2,2,2),border=color, col=color,lty=1,lwd=1)
       draw.circle(5,5,1.5,border="blue",lty=2,lwd=2)
-      text.default(5,5,labels="80",cex=7)#
-      # points(5,5,type='p',bg = "grey")
-      # points(sort(rnorm(47)), cex = .5, col = "dark red")
-     
-      #write.csv(nhistory,file="history.csv",quote=FALSE,row.names = FALSE)
-      
+      text.default(5,5,labels=a,cex=7)#
     })
     # 建议
     output$description<-renderText({
