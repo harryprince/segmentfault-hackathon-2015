@@ -131,24 +131,17 @@ shinyServer(
     
     output$history<- renderPlot({
       
-      # if(str(input$file[,1])){
       library(plotrix)
+      par(family='STKaiti',mar=c(0,0,0,0))
       history = read.csv("history.csv")
       sunspotyear1 <- data.frame(y=history$score,x= time(history$timestamp))
       
-      p=ggplot(sunspotyear1, aes(x=x, y=y)) + geom_point(col='blue',alpha=.2,size=5)+geom_point(col='blue',alpha=.2)+geom_area(fill="red",alpha=.2) + geom_line()+scale_x_discrete(breaks=sunspotyear1$x,labels=history$timestamp) + xlab("Date")
+      p=ggplot(sunspotyear1, aes(x=x, y=y)) + geom_point(col='blue',alpha=.2,size=5)+geom_point(col='blue',alpha=.2)+geom_area(fill="purple",alpha=.2) + geom_line()+scale_x_discrete(breaks=sunspotyear1$x,labels=history$timestamp) + xlab("")
       
       p+ylab("")+theme(axis.title.y=element_text(angle=0))
 
       
-            # }
-      # jpegfile <- file(input$file["datapath"], "rb")
-      # N <- 1e6
-      # repeat{
-      #   pngfilecontents <- readBin(jpegfile, what="raw", n=N)
-      #   if(length(pngfilecontents) == N) N <- 5 * N else break
-      # }
-      # close(jpegfile)
+        
     })
   }
 )
