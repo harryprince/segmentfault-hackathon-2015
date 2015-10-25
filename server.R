@@ -42,7 +42,7 @@ shinyServer(
     # is_input_file<-reactive({is.null(input$file)})
     
     output$logo<-renderUI({
-      img(src="http://7xnf88.com1.z0.glb.clouddn.com/genefan_logo.png",center,width = "288px", height = "144px")
+      img(src="http://7xnf88.com1.z0.glb.clouddn.com/genefan_logo.png",align='center',width = "288px", height = "144px")
     })
     #显示图片
     output$image_status<-renderText({
@@ -97,11 +97,20 @@ shinyServer(
         return(NULL)
       
       library(plotrix)
-      if  (food_recognition(input$file["name"])=="纯牛奶"){a=80;color='gray'}
+      
+      if  (food_recognition(input$file["name"]) == "纯牛奶"){a=80;color='gray';advice=c('纯牛奶的钙磷比例适当，利于钙的吸收，但MCM6基因产生突变，导致乳糖代谢能力差，易出现腹泻、腹胀或腹绞痛等症状。需降低牛奶的饮用量，建议你喝低乳糖牛奶或者酸奶.')}
       else{
-        if (food_recognition(input$file["name"])=="菠菜"){a=70;color='green'}
-        else{a=40;color='blue'}
+        if (food_recognition(input$file["name"]) == "菠菜"){a=70;color='green';advice=c('菠菜富含铁元素，有利于预防贫血,但菠菜中的胡萝卜素可能会导致您身体过敏，应选择其他蔬菜')}
+        else{
+          if(food_recognition(input$file["name"]) == "美酒"){a=20;color="yellow";advice=c('啤酒中的硅会导致您身体不适，我们建议您多喝蔬菜汁，代替啤酒。')}
+          else{
+            if(food_recognition(input$file["name"]) == "芝士"){a=40;color='blue';advice=c("适量吃奶酪是很好的，奶酪是钙的很好的来源，但吃多了不容易消化，不适合肠胃不好的人")}
+            else{a=15;color='purple';advice=c("暂无建议")}
+            }
+        }
       }
+      
+      
       
       par(family='STKaiti',mar=c(0,0,0,0))
       plot(1:10,seq(1,10,length=10),type="n",axes=F,xlab="",ylab="",frame.plot=F)#,main='本餐基因饮食匹配度')
@@ -117,6 +126,25 @@ shinyServer(
 
     })
     
+    # 建议
+    output$suggestion<-renderText({
+      if (is.null(input$file))
+        return(NULL)
+      
+      if  (food_recognition(input$file["name"]) == "纯牛奶"){a=80;color='gray';advice=c('纯牛奶的钙磷比例适当，利于钙的吸收，但MCM6基因产生突变，导致乳糖代谢能力差，易出现腹泻、腹胀或腹绞痛等症状。需降低牛奶的饮用量，建议你喝低乳糖牛奶或者酸奶.')}
+      else{
+        if (food_recognition(input$file["name"]) == "菠菜"){a=70;color='green';advice=c('菠菜富含铁元素，有利于预防贫血,但菠菜中的胡萝卜素可能会导致您身体过敏，应选择其他蔬菜')}
+        else{
+          if(food_recognition(input$file["name"]) == "美酒"){a=20;color="yellow";advice=c('啤酒中的硅会导致您身体不适，我们建议您多喝蔬菜汁，代替啤酒。')}
+          else{
+            if(food_recognition(input$file["name"]) == "芝士"){a=40;color='blue';advice=c("适量吃奶酪是很好的，奶酪是钙的很好的来源，但吃多了不容易消化，不适合肠胃不好的人")}
+            else{a=15;color='purple';advice=c("暂无建议")}
+          }
+        }
+      }
+      advice
+      
+    })
     output$history<- renderPlot({
       temp= input$date
       # typeof(temp);
