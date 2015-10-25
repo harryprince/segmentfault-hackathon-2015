@@ -52,6 +52,7 @@ shinyUI(fluidPage(
       h3("rs182549  CC低活性",align='center'),
       h2("每日健康值",align='center'),
       plotOutput("history"),
+      sliderInput('date',min=1,max=25,step=1,value=10,label='时段选取',animate=T),
       h2("日期",align='center')
             )
       )

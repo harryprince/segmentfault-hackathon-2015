@@ -42,7 +42,7 @@ shinyServer(
     # is_input_file<-reactive({is.null(input$file)})
     
     output$logo<-renderUI({
-      img(src="http://7xnf88.com1.z0.glb.clouddn.com/genefan_logo.png",width = "288px", height = "144px")
+      img(src="http://7xnf88.com1.z0.glb.clouddn.com/genefan_logo.png",center,width = "288px", height = "144px")
     })
     #显示图片
     output$image_status<-renderText({
@@ -118,13 +118,15 @@ shinyServer(
     })
     
     output$history<- renderPlot({
-      
+      temp= input$date
+      # typeof(temp);
+      # length(temp);
       library(plotrix)
       par(family='STKaiti',mar=c(0,0,0,0))
       history = read.csv("history.csv")
-      sunspotyear1 <- data.frame(y=history$score,x= time(history$timestamp))
-      
-      p=ggplot(sunspotyear1, aes(x=x, y=y)) + geom_point(col='blue',alpha=.2,size=5)+geom_point(col='blue',alpha=.2)+geom_area(fill="purple",alpha=.2) + geom_line()+scale_x_discrete(breaks=sunspotyear1$x,labels=history$timestamp) + xlab("")
+      sunspotyear1 <- data.frame(y=history$score[1:temp],x= history$timestamp[1:temp])
+      input$date["value"] 
+      p=ggplot(sunspotyear1, aes(x=x, y=y)) + geom_point(col='blue',alpha=.2,size=5)+geom_point(col='blue',alpha=.2)+geom_area(fill="purple",alpha=.2) + geom_line()+scale_x_discrete(breaks=sunspotyear1$x[1:temp],labels=history$timestamp[1:temp]) + xlab("")
       
       
       p+ylab("")+theme(axis.title.y=element_text(angle=0))
