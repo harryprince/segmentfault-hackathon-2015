@@ -154,7 +154,7 @@ shinyServer(
       history = read.csv("history.csv")
       sunspotyear1 <- data.frame(y=history$score[1:temp],x= history$timestamp[1:temp])
       input$date["value"] 
-      p=ggplot(sunspotyear1, aes(x=x, y=y)) + geom_point(col='blue',alpha=.2,size=5)+geom_point(col='blue',alpha=.2)+geom_area(fill="purple",alpha=.2) + geom_line()+scale_x_discrete(breaks=sunspotyear1$x[1:temp],labels=history$timestamp[1:temp]) + xlab("")
+      p=ggplot(sunspotyear1, aes(x=x, y=y)) + geom_point(col='green',alpha=.2,size=5)+geom_point(col='green',alpha=.2)+geom_area(fill="green",alpha=.2) + geom_line()+scale_x_discrete(breaks=sunspotyear1$x[1:temp],labels=history$timestamp[1:temp]) + xlab("")
       
       
       p+ylab("")+theme(axis.title.y=element_text(angle=0))

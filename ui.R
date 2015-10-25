@@ -31,7 +31,7 @@ shinyUI(fluidPage(
       uiOutput('logo'),
       h2(textOutput("image_status")),
       uiOutput('user_upload'),
-      h3(textOutput("food_name")),
+      h3(textOutput("food_name"),align='center'),
       h1(textOutput("index"),align='center'),
       plotOutput("circle"),
       # tabPanel("Live Images", 
